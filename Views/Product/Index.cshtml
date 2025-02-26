@@ -51,9 +51,12 @@
 										<td>@data.Description</td>
 										<td>@data.Price</td>
 										<td>@data.ProductStatus</td>
-										<td>
+										<td class="d-flex gap-2">
 											<a href="@Url.Action("Update", "Product", new {id = @data.Id})" class="btn btn-sm btn-info">Update</a>
-											<input type="button" class="btn btn-am btn-danger" value="Delete" onclick="deleteData(@data.Id)"/>
+											<form method="post" action="@Url.Action("Delete", "Product")" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
+												<input type="hidden" name="Id" value="@data.Id" />
+												<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+											</form>
 										</td>
 									</tr>
 								}

@@ -50,5 +50,24 @@ namespace UITraining.Services
 
 			return true;
 		}
+
+		public bool DeleteData(int id)
+		{
+			try
+			{
+				var dataProduct = _context.Products.FirstOrDefault(Del => Del.Id == id);
+				if (dataProduct != null)
+				{
+					_context.Products.Remove(dataProduct);
+					_context.SaveChanges();
+					return true;
+				}
+				return false;
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
 	}
 }
