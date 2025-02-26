@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UITraining.Interfaces;
+using UITraining.Models.DB;
 
 namespace UITraining.Controllers
 {
@@ -15,6 +16,24 @@ namespace UITraining.Controllers
         {
             var products = _interface.GetAllProducts();
             return View(products);
+        }
+
+        public IActionResult Update(int id)
+        {
+            var product = _interface.GetProductById(id);
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Product product)
+        {
+            var updateProduct = _interface.UpdateProduct(product);
+            if (updateProduct)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View();
         }
     }
 }
