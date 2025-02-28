@@ -58,7 +58,8 @@ namespace UITraining.Services
 				var dataProduct = _context.Products.FirstOrDefault(Del => Del.Id == id);
 				if (dataProduct != null)
 				{
-					_context.Products.Remove(dataProduct);
+					dataProduct.ProductStatus = ProductStatus.deleted;
+					_context.Products.Update(dataProduct);
 					_context.SaveChanges();
 					return true;
 				}
