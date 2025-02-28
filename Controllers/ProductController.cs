@@ -39,7 +39,7 @@ namespace UITraining.Controllers
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var deleteProduct = _interface.DeleteData(id);
+            var deleteProduct = _interface.SoftDelete(id);
             if (deleteProduct)
             {
                 return RedirectToAction(nameof(Index));

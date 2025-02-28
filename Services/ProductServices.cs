@@ -51,7 +51,7 @@ namespace UITraining.Services
 			return true;
 		}
 
-		public bool DeleteData(int id)
+		public bool SoftDelete(int id)
 		{
 			try
 			{
