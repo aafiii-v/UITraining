@@ -20,6 +20,7 @@ internal class Program
 		);
 
         builder.Services.AddScoped<IProduct, ProductServices>();
+        builder.Services.AddScoped<ISupplier, SupplierServices>();
 
 		// Add services to the container.
 		builder.Services.AddControllersWithViews();
