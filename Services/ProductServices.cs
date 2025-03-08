@@ -21,7 +21,8 @@ namespace UITraining.Services
         {
             var products = _context.Products
                 .Include(y => y.Supplier)
-                .Where(x => x.ProductStatus != GeneralStatusData.deleted).Select(x => new ProductDTO
+                .Where(x => x.ProductStatus != GeneralStatusData.deleted)
+                .Select(x => new ProductDTO
                 {
                     Id = x.Id,
                     Name = x.Name,

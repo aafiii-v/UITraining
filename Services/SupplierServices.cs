@@ -19,6 +19,7 @@ namespace UITraining.Services
         public List<SelectListItem> Suppliers()
         {
             var datas = _context.Suppliers
+                .Where(x => x.StatusSupplier != GeneralStatusData.Suspended)
                 .Select(x => new SelectListItem
                 {
                     Text = x.NameSupplier,
@@ -57,6 +58,7 @@ namespace UITraining.Services
         {
             try
             {
+
                 var insertSupplier = new Supplier
                 {
                     NameSupplier = supplier.NameSupplier,
