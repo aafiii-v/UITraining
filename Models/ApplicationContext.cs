@@ -19,8 +19,8 @@ namespace UITraining.Models
 			modelBuilder.Entity<Product>()
 				.HasOne(p => p.Supplier) //Produk memiliki satu supplier
 				.WithMany(s => s.Products) //Supplier bisa memiliki banyak data
-				.HasForeignKey(p => p.IdSupplier); 
-				//.OnDelete(DeleteBehavior.Cascade)
+				.HasForeignKey(p => p.IdSupplier)
+				.OnDelete(DeleteBehavior.Cascade);
 
 			base.OnModelCreating(modelBuilder);
 		}

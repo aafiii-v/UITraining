@@ -33,55 +33,71 @@ namespace UITraining.Services
                 }).ToList();
             return products;
         }
-
         public Product GetProductById(int id)
         {
-            var product = _context.Products.Where(x => x.Id == id && x.ProductStatus != GeneralStatusData.deleted).FirstOrDefault();
+            var product = _context.Products
+                .Where(x => x.Id == id && x.ProductStatus != GeneralStatusData.deleted)
+                .FirstOrDefault();
 
             if (product == null)
             {
                 return new Product();
-            }
-
+            }   
             return product;
-        }
-
-        public bool UpdateProduct(ProductDTO product)
-        {
-            var data = _context.Products.FirstOrDefault(x => x.Id == product.Id);
-            if (data == null)
-            {
-                return false;
-            }
-
-            data.Name = product.Name;
-            data.Description = product.Description;
-            data.Stoct = product.Stoct;
-            data.Price = product.Price;
-            data.ProductStatus = product.ProductStatus;
-
-            _context.Products.Update(data);
-            _context.SaveChanges();
-
-            return true;
         }
 
         public bool AddProduct(ProductDTO product)
         {
-            var datas = new Product();
-            datas.Name = product.Name;
-            datas.Description = product.Description;
-            datas.Stoct = product.Stoct;
-            datas.Price = product.Price;
-            datas.ProductStatus = product.ProductStatus;
-            datas.IdSupplier = product.IdSupplier;
+            try
+            {
+                var datas = new Product
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    Stoct = product.Stoct,
+                    Price = product.Price,
+                    ProductStatus = product.ProductStatus,
+                    IdSupplier = product.IdSupplier
+                };
 
-            _context.Products.Add(datas);
-            _context.SaveChanges();
-            return true;
+                _context.Products.Add(datas);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public bool SoftDelete(int id)
+        public bool UpdateProduct(ProductDTO product)
+        {
+            try
+            {
+                var data = _context.Products.FirstOrDefault(x => x.Id == product.Id);
+                if (data == null)
+                {
+                    return false;
+                }
+
+                data.Name = product.Name;
+                data.Description = product.Description;
+                data.Stoct = product.Stoct;
+                data.Price = product.Price;
+                data.ProductStatus = product.ProductStatus;
+
+                _context.Products.Update(data);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool SoftDeleteProduct(int id)
         {
             try
             {

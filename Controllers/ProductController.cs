@@ -7,24 +7,24 @@ namespace UITraining.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProduct _interface;
+        private readonly IProduct _product;
         private readonly ISupplier _supplier;
 
         public ProductController(IProduct interfaces, ISupplier supplier)
         {
-            _interface = interfaces;
+            _product = interfaces;
             _supplier = supplier;
         }
         public IActionResult Index()
         {
-            var products = _interface.GetAllProducts();
+            var products = _product.GetAllProducts();
             return View(products);
         }
 
         public IActionResult Update(int id)
         {
             ViewBag.Supplier = _supplier.Suppliers();
-            var product = _interface.GetProductById(id);
+            var product = _product.GetProductById(id);
             return View(product);
         }
 
@@ -33,7 +33,7 @@ namespace UITraining.Controllers
         {
             if (product.Id == 0)
             {
-                var addProduct = _interface.AddProduct(product);
+                var addProduct = _product.AddProduct(product);
                 if (addProduct)
                 {
                     return RedirectToAction(nameof(Index));
@@ -41,20 +41,19 @@ namespace UITraining.Controllers
             }
             else
             {
-                var updateProduct = _interface.UpdateProduct(product);
+                var updateProduct = _product.UpdateProduct(product);
                 if (updateProduct)
                 {
                     return RedirectToAction(nameof(Index));
                 }
             }
-
             return View();
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
-            var deleteProduct = _interface.SoftDelete(id);
+            var deleteProduct = _product.SoftDeleteProduct(id);
             if (deleteProduct)
             {
                 return RedirectToAction(nameof(Index));

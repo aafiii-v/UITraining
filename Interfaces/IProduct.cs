@@ -9,6 +9,7 @@ namespace UITraining.Interfaces
 		public Product GetProductById(int id);
 		public bool UpdateProduct(ProductDTO product);
 		public bool AddProduct(ProductDTO product);
-		public bool SoftDelete(int id);
-	}
+		public bool SoftDeleteProduct(int id);
+
+    }
 }

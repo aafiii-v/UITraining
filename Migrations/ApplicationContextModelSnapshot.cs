@@ -68,6 +68,9 @@ namespace UITraining.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("StatusSupplier")
+                        .HasColumnType("int");
+
                     b.Property<string>("SupplierAddress")
                         .IsRequired()
                         .HasColumnType("longtext");
