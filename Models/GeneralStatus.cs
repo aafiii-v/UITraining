@@ -6,10 +6,7 @@
 		{
 			published,
 			unpublished,
-			deleted,
-			Active,
-			Inactive,
-			Suspended
+			deleted
 		}
 	}
 }

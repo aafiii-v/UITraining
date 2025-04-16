@@ -21,6 +21,7 @@ internal class Program
 
         builder.Services.AddScoped<IProduct, ProductServices>();
         builder.Services.AddScoped<ISupplier, SupplierServices>();
+		builder.Services.AddScoped<IUserAccess, UserAccessServices>();
 
 		// Add services to the container.
 		builder.Services.AddControllersWithViews();
@@ -40,7 +41,7 @@ internal class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+            pattern: "{controller=UserAccess}/{action=Login}/{id?}");
 
         app.Run();
     }

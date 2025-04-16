@@ -19,7 +19,7 @@ namespace UITraining.Services
         public List<SelectListItem> Suppliers()
         {
             var datas = _context.Suppliers
-                .Where(x => x.StatusSupplier != GeneralStatusData.Suspended)
+                .Where(x => x.StatusSupplier == GeneralStatusData.published)
                 .Select(x => new SelectListItem
                 {
                     Text = x.NameSupplier,
@@ -31,7 +31,7 @@ namespace UITraining.Services
         public Supplier GetSupplierById(int id)
         {
             var supplier = _context.Suppliers
-                .Where(x => x.id == id && x.StatusSupplier != GeneralStatusData.Suspended)
+                .Where(x => x.id == id && x.StatusSupplier != GeneralStatusData.deleted)
                 .FirstOrDefault();
 
             if(supplier == null)
@@ -43,7 +43,7 @@ namespace UITraining.Services
 
         public List<SupplierDTO> GetAllSupplier()
         {
-            var suppliers = _context.Suppliers.Where(x => x.StatusSupplier != GeneralStatusData.Suspended)
+            var suppliers = _context.Suppliers.Where(x => x.StatusSupplier != GeneralStatusData.deleted)
                 .Select(x => new SupplierDTO
                 {
                     id = x.id,
@@ -105,7 +105,7 @@ namespace UITraining.Services
                 var dataSupplier = _context.Suppliers.FirstOrDefault(DEL => DEL.id == id);
                 if(dataSupplier != null)
                 {
-                    dataSupplier.StatusSupplier = GeneralStatusData.Suspended;
+                    dataSupplier.StatusSupplier = GeneralStatusData.deleted;
                     _context.Suppliers.Update(dataSupplier);
                     _context.SaveChanges();
                     return true;

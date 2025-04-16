@@ -1,12 +1,14 @@
 ﻿@using UITraining.Models.DB
-@model Supplier
+@model UserAccess
+
 @{
-    ViewData["Title"] = "Supplier";
+    ViewData["Title"] = "UserAccess";
 }
+
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Supplier</h1>
+        <h1>User List</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -15,38 +17,52 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add New Supplier</h5>
+                        <h5 class="card-title">Edit User Register</h5>
 
-                        <form asp-controller="Supplier" asp-action="Update" method="post">
+                        <!-- Horizontal Form -->
+                        @* asp-action="Edit" harus edit *@
+                        <form asp-controller="UserAccess" asp-action="EditUser" method="post">
                             <div class="row mb-3" hidden>
                                 <label for="Id" class="col-sm-2 col-form-label">Id</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="id" asp-for="id">
+                                    <input type="text" class="form-control" id="Id" asp-for="Id">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="NameSupplier" class="col-sm-2 col-form-label">Name</label>
+                                <label for="Name" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" asp-for="NameSupplier">
+                                    <input type="text" class="form-control" id="name" asp-for="Name" readonly>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="SupplierAddress" class="col-sm-2 col-form-label">SupplierAddress</label>
+                                <label for="Stock" class="col-sm-2 col-form-label">User Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="price" asp-for="SupplierAddress">
+                                    <input type="text" class="form-control" id="text" asp-for="Username" readonly>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label for="Stock" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="text" asp-for="Password" readonly>
+                                </div>
+                            </div>
+                            @* <div class="row mb-3"> *@
+                            @*     <label for="Stock" class="col-sm-2 col-form-label">MatchPassword</label> *@
+                            @*     <div class="col-sm-10"> *@
+                            @*         <input type="text" class="form-control" id="text" asp-for="MatchPassword"> *@
+                            @*     </div> *@
+                            @* </div> *@
+
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Status</label>
                                 <div class="col-sm-10">
-                                    <select asp-for="StatusSupplier" class="form-select" aria-label="Default select example">
+                                    <select asp-for="UserStatus" class="form-select" aria-label="Default select example">
                                         <option value=0>Published</option>
                                         <option value=1>Unpublished</option>
                                     </select>
@@ -54,7 +70,7 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Save Data</button>
-                                <a href="@Url.Action("Index","Supplier")" class="btn btn-info">Cancel</a>
+                                <a href="@Url.Action("Index","ListRegisterUser")" class="btn btn-info">Cancel</a>
                             </div>
                         </form><!-- End Horizontal Form -->
 
@@ -64,4 +80,4 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+</main>

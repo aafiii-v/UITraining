@@ -14,6 +14,8 @@ namespace UITraining.Models
 
 		public virtual DbSet<Supplier> Suppliers { get; set; }
 
+		public virtual DbSet<UserAccess> UserAccesses { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Product>()
